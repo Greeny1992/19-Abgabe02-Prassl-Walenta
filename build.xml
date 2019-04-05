@@ -7,7 +7,7 @@
 		
 	<target name="compile" depends="clean">
 		<mkdir dir="build/classes"/>
-		<javac srcdir="src\main\java\at\fhj\iit" destdir="build/classes" includeantruntime="false"/>
+		<javac srcdir="src" destdir="build/classes" includeantruntime="false"/>
 		<echo message="The class file has been created"/>
 	</target>	
 	
@@ -15,9 +15,16 @@
 		<mkdir dir="build/jar"/>
 		<jar destfile="build/jar/assignment.jar" basedir="build/classes">
 			<manifest>
-				<attribute name="Main-Class" value="assigment"/>
+				<attribute name="Main-Class" value="at.fhj.iit.Main"/>
 			</manifest>
 		</jar>
+		<echo message="Jar File has been created"/>
 	</target>
 	
+	<target name="run" depends="jar">
+		<echo> Running MyClass ......... </echo>
+		<java jar="build/jar/assignment.jar" fork="true">
+			<arg value="Georg" />
+		</java>
+	</target>	
 </project>	
