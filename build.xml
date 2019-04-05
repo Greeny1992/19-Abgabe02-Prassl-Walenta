@@ -4,5 +4,11 @@
 	</target>	
 	<target name="clean">
 		<delete dir="build"/>
+	</target>
+		
+	<target name="compile">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src\main\java\at\fhj\iit" destdir="build/classes" includeantruntime="false"/>
 	</target>	
+	
 </project>	
