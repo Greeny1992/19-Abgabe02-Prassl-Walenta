@@ -1,14 +1,23 @@
 <project name="19-Abgabe02-Prassl-Walenta" default="jar">
-	<target name="init">
-		<mkdir dir="build"/>
-	</target>	
+
 	<target name="clean">
 		<delete dir="build"/>
+		<echo message="Build-folder has been deleted. Everything is on start"/>
 	</target>
 		
-	<target name="compile">
+	<target name="compile" depends="clean">
 		<mkdir dir="build/classes"/>
 		<javac srcdir="src\main\java\at\fhj\iit" destdir="build/classes" includeantruntime="false"/>
+		<echo message="The class file has been created"/>
 	</target>	
+	
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar"/>
+		<jar destfile="build/jar/assignment.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="assigment"/>
+			</manifest>
+		</jar>
+	</target>
 	
 </project>	
