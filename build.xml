@@ -1,0 +1,6 @@
+<project name="19-Abgabe02-Prassl-Walenta" default="jar">
+	<target name="init">
+		<mkdir ="build"/>
+	</target>
+	
+</project>	
