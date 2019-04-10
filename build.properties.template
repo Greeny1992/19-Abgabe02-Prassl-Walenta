@@ -1,0 +1,7 @@
+name = Georg und Guenther
+source = ./src
+classFolder = ./build-ant
+jarFolder = ./lib
+jarName = assignment.jar
+installFolder = ./dist
+mainPath = at.fhj.iit.Main

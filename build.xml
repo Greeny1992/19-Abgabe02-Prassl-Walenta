@@ -1,30 +1,41 @@
 <project name="19-Abgabe02-Prassl-Walenta" default="jar">
-
+	<property file = "build.properties"/>
+	
 	<target name="clean">
-		<delete dir="build"/>
-		<echo message="Build-folder has been deleted. Everything is on start"/>
+		<delete dir="${classFolder}"/>
+		<delete dir="${jarFolder}"/>
+		<delete dir="${installFolder}"/>
 	</target>
+	
+	<target name="init">
+		<mkdir dir="${classFolder}"/>
+		<mkdir dir="${jarFolder}"/>
+		<mkdir dir="${installFolder}"/>
+	</target>		
 		
-	<target name="compile" depends="clean">
-		<mkdir dir="build/classes"/>
-		<javac srcdir="src" destdir="build/classes" includeantruntime="false"/>
+	<target name="compile" depends="init">
+		<javac srcdir="${source}" destdir="${classFolder}" includeantruntime="false"/>
 		<echo message="The class file has been created"/>
 	</target>	
 	
 	<target name="jar" depends="compile">
-		<mkdir dir="build/jar"/>
-		<jar destfile="build/jar/assignment.jar" basedir="build/classes">
+		<jar destfile="${jarFolder}/${jarName}" basedir="${classFolder}">
 			<manifest>
-				<attribute name="Main-Class" value="at.fhj.iit.Main"/>
+				<attribute name="Main-Class" value="${mainPath}"/>
 			</manifest>
 		</jar>
 		<echo message="Jar File has been created"/>
 	</target>
 	
-	<target name="run" depends="jar">
+	<target name="install" depends="jar">
+		<copy file="${jarFolder}/${jarName}" todir="${installFolder}"/>
+	</target>
+		
+	<target name="run" depends="install">
 		<echo> Running MyClass ......... </echo>
-		<java jar="build/jar/assignment.jar" fork="true">
-			<arg value="Georg" />
+		<java jar="${installFolder}/${jarName}" fork="true">
+			<arg value="${name}" />
 		</java>
 	</target>	
+	
 </project>	
